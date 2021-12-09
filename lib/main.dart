@@ -1,3 +1,5 @@
+import 'package:cacapp/screen/home_screen.dart';
+import 'package:cacapp/screen/reports_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const CacApp());
@@ -10,14 +12,12 @@ class CacApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'CacApp',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('CacApp'),
-        ),
-        body: const Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      //home: HomeScreen(),
+      initialRoute: HomeScreen.route,
+      routes: {
+        HomeScreen.route: (context) => const HomeScreen(),
+        ReportsScreen.route: (context) => const ReportsScreen(),
+      },
     );
   }
 }
