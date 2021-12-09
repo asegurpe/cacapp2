@@ -1,5 +1,7 @@
-import 'package:cacapp/model/report.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:cacapp/util/extensions.dart';
+import 'package:cacapp/model/report.dart';
 
 class FriendsScreen extends StatelessWidget {
   const FriendsScreen({Key? key}) : super(key: key);
@@ -10,7 +12,7 @@ class FriendsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Friends'),
+        title: Text(AppLocalizations.of(context)!.friends.capitalize()),
       ),
       body: ListView(
         children: _getReports(),

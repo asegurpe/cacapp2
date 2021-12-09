@@ -2,10 +2,12 @@ import 'package:cacapp/widget/bottom_action_button.dart';
 import 'package:cacapp/widget/main_top_bar.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:cacapp/util/extensions.dart';
+
 import 'package:cacapp/screen/friends_screen.dart';
 import 'package:cacapp/screen/groups_screen.dart';
 import 'package:cacapp/screen/info_screen_dart.dart';
-import 'package:cacapp/screen/reports_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -36,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             BottomActionButton(
               icon: 'friends.png',
-              label: 'Friends',
+              label: AppLocalizations.of(context)!.friends.capitalize(),
               color: Colors.green,
               onPressed: () {
                 Navigator.pushNamed(context, FriendsScreen.route);
@@ -45,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomActionButton(
               icon: 'group.png',
-              label: 'Groups',
+              label: AppLocalizations.of(context)!.groups.capitalize(),
               color: Colors.purple,
               onPressed: () {
                 Navigator.pushNamed(context, GroupsScreen.route);
@@ -54,14 +56,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             BottomActionButton(
               icon: 'cup.png',
-              label: 'Ranking',
+              label: AppLocalizations.of(context)!.ranking.capitalize(),
               color: Colors.yellow,
               onPressed: () {},
               showNotification: false,
             ),
             BottomActionButton(
               icon: 'info.png',
-              label: 'Info',
+              label: AppLocalizations.of(context)!.information.capitalize(),
               color: Colors.blue,
               onPressed: () {
                 Navigator.pushNamed(context, InfoScreen.route);

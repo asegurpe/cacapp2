@@ -1,5 +1,7 @@
 import 'package:cacapp/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'package:cacapp/routes/routes.dart';
 import 'package:cacapp/screen/home_screen.dart';
 
@@ -20,6 +22,16 @@ class CacApp extends StatelessWidget {
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       },
       theme: theme,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en', ''),
+        Locale('es', ''),
+        Locale('ca', ''),
+      ],
     );
   }
 }
