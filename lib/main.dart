@@ -1,6 +1,6 @@
-import 'package:cacapp/screen/home_screen.dart';
-import 'package:cacapp/screen/reports_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:cacapp/routes/routes.dart';
+import 'package:cacapp/screen/home_screen.dart';
 
 void main() => runApp(const CacApp());
 
@@ -14,9 +14,10 @@ class CacApp extends StatelessWidget {
       title: 'CacApp',
       //home: HomeScreen(),
       initialRoute: HomeScreen.route,
-      routes: {
-        HomeScreen.route: (context) => const HomeScreen(),
-        ReportsScreen.route: (context) => const ReportsScreen(),
+      routes: getApplicationRoutes(),
+      onGenerateRoute: (settings) {
+        print('${settings.name}');
+        return MaterialPageRoute(builder: (context) => HomeScreen());
       },
     );
   }
