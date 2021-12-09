@@ -14,8 +14,10 @@ class InfoScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         title: const InfoTopBar(),
       ),
-      body: Column(
-        children: [],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(
+            'CacApp is an application created to report citizens\' pet faeces that have been left on public roads.\n\nCacApp is not intended as an official reporting method, but rather as a way to raise awareness among citizens, regardless of their nationality, religion or other personal aspects.\n\nIf you have any questions or suggestions regarding the application only, please do not hesitate to contact us via our feedback form. For all other communications, please contact the competent authority.'),
       ),
     );
   }

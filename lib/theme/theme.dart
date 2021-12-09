@@ -18,7 +18,7 @@ final theme = ThemeData(
     onError: Colors.grey,
 
     surface: Colors.lime, // AppBar
-    onSurface: Colors.yellow, //icons, inputs
+    onSurface: Colors.blue, //icons, inputs
 
     brightness: Brightness.light,
   ),
@@ -31,6 +31,6 @@ final theme = ThemeData(
   textTheme: const TextTheme(
     headline1: TextStyle(fontSize: 26.0, fontWeight: FontWeight.bold),
     headline6: TextStyle(fontSize: 20.0),
-    bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+    bodyText2: TextStyle(fontSize: 18.0),
   ),
 );
