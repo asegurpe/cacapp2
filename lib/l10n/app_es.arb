@@ -1,10 +1,10 @@
 {
-    "friends": "Amigos",
-    "groups": "Grupos",
-    "ranking": "Clasificación",
-    "information": "Información",
-    "reports": "Denuncias",
-    "confirm": "Confirmar",
-    "delete": "Borrar",
+    "friends": "amigos",
+    "groups": "grupos",
+    "ranking": "clasificación",
+    "information": "información",
+    "reports": "denuncias",
+    "confirm": "confirmar",
+    "delete": "borrar",
     "about_text": "CacApp es una aplicación creada para denunciar los excrementos de las mascotas de los ciudadanos que han sido dejados en la vía pública.\\n\\nCacApp no pretende ser un método de denuncia oficial, sino una forma de concienciar a los ciudadanos, independientemente de su nacionalidad, religión u otros aspectos personales.\\n\\nSi tiene alguna pregunta o sugerencia relacionada únicamente con la aplicación, no dude en ponerse en contacto con nosotros a través de nuestro formulario de comentarios. Para cualquier otra comunicación, diríjase a la autoridad competente."
 }
