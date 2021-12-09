@@ -1,3 +1,4 @@
+import 'package:cacapp/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:cacapp/routes/routes.dart';
 import 'package:cacapp/screen/home_screen.dart';
@@ -18,6 +19,7 @@ class CacApp extends StatelessWidget {
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       },
+      theme: theme,
     );
   }
 }

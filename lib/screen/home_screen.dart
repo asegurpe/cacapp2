@@ -1,7 +1,11 @@
+import 'package:cacapp/widget/bottom_action_button.dart';
+import 'package:cacapp/widget/main_top_bar.dart';
+import 'package:flutter/material.dart';
+
 import 'package:cacapp/screen/friends_screen.dart';
 import 'package:cacapp/screen/groups_screen.dart';
+import 'package:cacapp/screen/info_screen_dart.dart';
 import 'package:cacapp/screen/reports_screen.dart';
-import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -19,50 +23,53 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('CacApp'),
-        elevation: 0,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, ReportsScreen.route);
-            },
-            icon: Icon(Icons.report)),
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        title: MainTopBar(
+          totalReports: 10,
+        ),
       ),
       body: const Center(),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Friends',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.groups),
-            label: 'Groups',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.emoji_events),
-            label: 'Ranking',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'Info',
-          ),
-        ],
-        currentIndex: _currentIndex,
-        selectedItemColor: Colors.amber[800],
-        onTap: (int index) {
-          setState(() {
-            _currentIndex = index;
-            switch (_currentIndex) {
-              case 0:
+      bottomNavigationBar: SafeArea(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            BottomActionButton(
+              icon: 'friends.png',
+              label: 'Friends',
+              color: Colors.green,
+              onPressed: () {
                 Navigator.pushNamed(context, FriendsScreen.route);
-                break;
-              case 1:
+              },
+              showNotification: false,
+            ),
+            BottomActionButton(
+              icon: 'group.png',
+              label: 'Groups',
+              color: Colors.purple,
+              onPressed: () {
                 Navigator.pushNamed(context, GroupsScreen.route);
-                break;
-            }
-          });
-        },
+              },
+              showNotification: false,
+            ),
+            BottomActionButton(
+              icon: 'cup.png',
+              label: 'Ranking',
+              color: Colors.yellow,
+              onPressed: () {},
+              showNotification: false,
+            ),
+            BottomActionButton(
+              icon: 'info.png',
+              label: 'Info',
+              color: Colors.blue,
+              onPressed: () {
+                Navigator.pushNamed(context, InfoScreen.route);
+              },
+              showNotification: false,
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
