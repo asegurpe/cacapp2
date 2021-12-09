@@ -16,8 +16,7 @@ class CacApp extends StatelessWidget {
       initialRoute: HomeScreen.route,
       routes: getApplicationRoutes(),
       onGenerateRoute: (settings) {
-        print('${settings.name}');
-        return MaterialPageRoute(builder: (context) => HomeScreen());
+        return MaterialPageRoute(builder: (context) => const HomeScreen());
       },
     );
   }

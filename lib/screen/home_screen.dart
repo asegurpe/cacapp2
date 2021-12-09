@@ -1,3 +1,5 @@
+import 'package:cacapp/screen/friends_screen.dart';
+import 'package:cacapp/screen/groups_screen.dart';
 import 'package:cacapp/screen/reports_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -51,6 +53,14 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (int index) {
           setState(() {
             _currentIndex = index;
+            switch (_currentIndex) {
+              case 0:
+                Navigator.pushNamed(context, FriendsScreen.route);
+                break;
+              case 1:
+                Navigator.pushNamed(context, GroupsScreen.route);
+                break;
+            }
           });
         },
       ),
