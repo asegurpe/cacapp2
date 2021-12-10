@@ -3,31 +3,63 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cacapp/util/extensions.dart';
 import 'package:cacapp/model/report.dart';
 
-class ReportsScreen extends StatelessWidget {
+class ReportsScreen extends StatefulWidget {
   const ReportsScreen({Key? key}) : super(key: key);
 
   static const String route = 'reports';
 
   @override
+  State<ReportsScreen> createState() => _ReportsScreenState();
+}
+
+class _ReportsScreenState extends State<ReportsScreen> {
+  bool onlyNoConfirmed = true;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context)!.reports.capitalize()),
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.keyboard_arrow_left),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            Text(AppLocalizations.of(context)!.reports.capitalize()),
+            IconButton(
+              icon: onlyNoConfirmed
+                  ? const Icon(Icons.visibility_off, color: Colors.grey)
+                  : const Icon(Icons.visibility, color: Colors.green),
+              onPressed: _changeView,
+            ),
+          ],
+        ),
       ),
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.all(10),
-          children: _getReports(),
+          // padding: const EdgeInsets.all(10),
+          children: _getReports(context),
         ),
       ),
     );
   }
 
-  List<Widget> _getReports() {
+  void _changeView() {
+    onlyNoConfirmed = !onlyNoConfirmed;
+    setState(() {});
+  }
+
+  List<Widget> _getReports(BuildContext context) {
     List<Report> reports = [
       Report(
+        id: '1',
         cleaned: false,
-        confirmed: false,
+        confirmed: true,
         consistency: 0,
         description: '01/01/2022 00:00',
         informer: '1341341',
@@ -36,6 +68,7 @@ class ReportsScreen extends StatelessWidget {
         smell: 0,
       ),
       Report(
+        id: '2',
         cleaned: false,
         confirmed: false,
         consistency: 0,
@@ -47,6 +80,7 @@ class ReportsScreen extends StatelessWidget {
         smell: 0,
       ),
       Report(
+        id: '3',
         cleaned: false,
         confirmed: false,
         consistency: 0,
@@ -60,55 +94,56 @@ class ReportsScreen extends StatelessWidget {
     ];
 
     return reports.map((report) {
-      if (report.picture.isEmpty) {
-        return Card(
+      // if (report.picture.isEmpty) {
+      return Dismissible(
+        key: Key('${report.id}'),
+        child: Card(
           child: Column(
             children: [
               ListTile(
                 title: Text(report.description),
                 subtitle: Text(report.informer),
-                leading: Image(image: AssetImage('assets/images/marker.png')),
-                trailing: Icon(Icons.keyboard_arrow_right),
+                leading: report.confirmed
+                    ? const Icon(Icons.check, color: Colors.green)
+                    : const Icon(Icons.check, color: Colors.grey),
+                trailing: const Icon(Icons.keyboard_arrow_right),
                 onTap: () {},
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(onPressed: () {}, child: Text('CONFIRM')),
-                  TextButton(onPressed: () {}, child: Text('DELETE')),
-                ],
               ),
             ],
           ),
-        );
-      } else {
-        return Card(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(5.0),
-            child: Column(
-              children: [
-                FadeInImage(
-                  image: NetworkImage(report.picture),
-                  placeholder: AssetImage('assets/images/marker.png'),
-                  fadeInDuration: Duration(milliseconds: 200),
-                  height: 250,
-                  fit: BoxFit.cover,
-                ),
-                Container(
-                    padding: EdgeInsets.all(8),
-                    child: Text(report.description)),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    TextButton(onPressed: () {}, child: Text('CONFIRM')),
-                    TextButton(onPressed: () {}, child: Text('DELETE')),
-                  ],
-                ),
+        ),
+        direction: report.confirmed
+            ? DismissDirection.startToEnd
+            : DismissDirection.horizontal,
+        background: Container(
+          color: Colors.red,
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: const [
+                Icon(Icons.delete, color: Colors.white),
+                Text('Delete', style: TextStyle(color: Colors.white)),
               ],
             ),
           ),
-        );
-      }
+        ),
+        secondaryBackground: report.confirmed
+            ? null
+            : Container(
+                color: Colors.green,
+                child: Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: const [
+                      Icon(Icons.check, color: Colors.white),
+                      Text('Confirm', style: TextStyle(color: Colors.white)),
+                    ],
+                  ),
+                ),
+              ),
+      );
     }).toList();
   }
 }

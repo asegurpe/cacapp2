@@ -11,6 +11,8 @@ void main() => runApp(const CacApp());
 class CacApp extends StatelessWidget {
   const CacApp({Key? key}) : super(key: key);
 
+  static const Locale locale = Locale('ca');
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -29,12 +31,12 @@ class CacApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [
+      supportedLocales: const [
+        locale,
         Locale('en'),
         Locale('es'),
-        Locale('ca'),
       ],
-      locale: Locale('ca'),
+      locale: locale,
     );
   }
 }

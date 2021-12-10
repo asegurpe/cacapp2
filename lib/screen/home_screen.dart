@@ -19,8 +19,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,44 +31,47 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: const Center(),
       bottomNavigationBar: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            BottomActionButton(
-              icon: 'friends.png',
-              label: AppLocalizations.of(context)!.friends.capitalize(),
-              color: Colors.green,
-              onPressed: () {
-                Navigator.pushNamed(context, FriendsScreen.route);
-              },
-              showNotification: false,
-            ),
-            BottomActionButton(
-              icon: 'group.png',
-              label: AppLocalizations.of(context)!.groups.capitalize(),
-              color: Colors.purple,
-              onPressed: () {
-                Navigator.pushNamed(context, GroupsScreen.route);
-              },
-              showNotification: false,
-            ),
-            BottomActionButton(
-              icon: 'cup.png',
-              label: AppLocalizations.of(context)!.ranking.capitalize(),
-              color: Colors.yellow,
-              onPressed: () {},
-              showNotification: false,
-            ),
-            BottomActionButton(
-              icon: 'info.png',
-              label: AppLocalizations.of(context)!.information.capitalize(),
-              color: Colors.blue,
-              onPressed: () {
-                Navigator.pushNamed(context, InfoScreen.route);
-              },
-              showNotification: false,
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              BottomActionButton(
+                icon: 'friends.png',
+                label: AppLocalizations.of(context)!.friends.capitalize(),
+                color: Colors.green,
+                onPressed: () {
+                  Navigator.pushNamed(context, FriendsScreen.route);
+                },
+                showNotification: false,
+              ),
+              BottomActionButton(
+                icon: 'group.png',
+                label: AppLocalizations.of(context)!.groups.capitalize(),
+                color: Colors.purple,
+                onPressed: () {
+                  Navigator.pushNamed(context, GroupsScreen.route);
+                },
+                showNotification: false,
+              ),
+              BottomActionButton(
+                icon: 'cup.png',
+                label: AppLocalizations.of(context)!.ranking.capitalize(),
+                color: Colors.yellow,
+                onPressed: () {},
+                showNotification: false,
+              ),
+              BottomActionButton(
+                icon: 'info.png',
+                label: AppLocalizations.of(context)!.information.capitalize(),
+                color: Colors.blue,
+                onPressed: () {
+                  Navigator.pushNamed(context, InfoScreen.route);
+                },
+                showNotification: false,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

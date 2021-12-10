@@ -1,10 +1,12 @@
 {
-    "friends": "Amics",
-    "groups": "Grups",
-    "ranking": "Clasificació",
-    "information": "Informació",
-    "reports": "Denuncies",
-    "confirm": "Confirmar",
-    "delete": "Esborrar",
-    "about_text": "CacApp és una aplicació creada per denunciar els excrements de les mascotes dels ciutadans que han estat deixats a la via pública.\\n\\nCacApp no pretén ser un mètode de denúncia oficial, sinó una manera de conscienciar els ciutadans, independentment de la seva nacionalitat, religió o altres aspectes personals.\\n\\nSi teniu alguna pregunta o suggeriment relacionat únicament amb l'aplicació, no dubteu a posar-vos en contacte amb nosaltres a través del nostre formulari de comentaris. Per a qualsevol altra comunicació, adreceu-vos a l'autoritat competent."
+    "friends": "amics",
+    "groups": "grups",
+    "ranking": "punts",
+    "information": "info",
+    "reports": "denuncies",
+    "confirm": "confirmar",
+    "delete": "esborrar",
+    "about_text_1": "CacApp és una aplicació creada per denunciar els excrements de les mascotes dels ciutadans que han estat deixats a la via pública.",
+    "about_text_2": "CacApp no pretén ser un mètode de denúncia oficial, sinó una manera de conscienciar els ciutadans, independentment de la seva nacionalitat, religió o altres aspectes personals.",
+    "about_text_3": "Si teniu alguna pregunta o suggeriment relacionat únicament amb l'aplicació, no dubteu a posar-vos en contacte amb nosaltres a través del nostre formulari de comentaris. Per a qualsevol altra comunicació, adreceu-vos a l'autoritat competent."
 }

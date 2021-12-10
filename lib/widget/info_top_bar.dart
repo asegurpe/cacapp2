@@ -1,7 +1,7 @@
 import 'package:cacapp/screen/info_screen_dart.dart';
-import 'package:cacapp/screen/reports_screen.dart';
-import 'package:cacapp/widget/bottom_action_button.dart';
+import 'package:cacapp/util/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class InfoTopBar extends StatefulWidget {
   const InfoTopBar({Key? key}) : super(key: key);
@@ -17,15 +17,15 @@ class _InfoTopBarState extends State<InfoTopBar> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          icon: Icon(Icons.keyboard_arrow_left),
+          icon: const Icon(Icons.keyboard_arrow_left),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        Text('Information'),
+        Text(AppLocalizations.of(context)!.information.capitalize()),
         IconButton(
           icon: Image.asset(
-            'assets/images/button/info.png',
+            'assets/images/button/feedback.png',
             scale: 20,
           ),
           onPressed: () => _showAbout(context),
@@ -40,10 +40,11 @@ class _InfoTopBarState extends State<InfoTopBar> {
       barrierDismissible: false,
       builder: (context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
           title: Center(child: Text('Feedback')),
           content: Container(
             width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height * 0.5,
+            height: MediaQuery.of(context).size.height * 0.2,
             child: const TextField(
               keyboardType: TextInputType.multiline,
               textInputAction: TextInputAction.newline,
@@ -63,7 +64,10 @@ class _InfoTopBarState extends State<InfoTopBar> {
               child: Text('Cancel'),
             ),
             TextButton(
-              onPressed: () => _showFeedbackSendt(context),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _showFeedbackSendt(context);
+              },
               child: Text('Sent'),
             ),
           ],
@@ -81,7 +85,7 @@ class _InfoTopBarState extends State<InfoTopBar> {
           title: Center(child: Text('Feedback')),
           content: Container(
             width: MediaQuery.of(context).size.width * 0.9,
-            height: MediaQuery.of(context).size.height * 0.5,
+            height: MediaQuery.of(context).size.height * 0.2,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: const [
