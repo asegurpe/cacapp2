@@ -25,15 +25,15 @@ class _FriendsScreenState extends State<FriendsScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              icon: const Icon(Icons.keyboard_arrow_left),
+              icon: Image.asset('assets/images/button/back.png'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             Text(AppLocalizations.of(context)!.friends.capitalize()),
-            const IconButton(
-              icon: Icon(Icons.visibility, color: Colors.white),
-              onPressed: null,
+            IconButton(
+              icon: Image.asset('assets/images/button/loupe.png'),
+              onPressed: () {},
             ),
           ],
         ),

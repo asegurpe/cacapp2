@@ -8,10 +8,25 @@ import 'package:cacapp/screen/home_screen.dart';
 
 void main() => runApp(const CacApp());
 
-class CacApp extends StatelessWidget {
+class CacApp extends StatefulWidget {
   const CacApp({Key? key}) : super(key: key);
 
-  static const Locale locale = Locale('ca');
+  @override
+  State<CacApp> createState() => _CacAppState();
+
+  static void setLocale(BuildContext context, Locale newLocale) async {
+    _CacAppState? state = context.findAncestorStateOfType<_CacAppState>();
+    state!.changeLanguage(newLocale);
+  }
+}
+
+class _CacAppState extends State<CacApp> {
+  Locale _locale = Locale('ca');
+  changeLanguage(Locale locale) {
+    setState(() {
+      _locale = locale;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,11 +47,11 @@ class CacApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: const [
-        locale,
-        Locale('en'),
+        Locale('ca'),
         Locale('es'),
+        Locale('en'),
       ],
-      locale: locale,
+      locale: _locale,
     );
   }
 }

@@ -1,7 +1,9 @@
-import 'package:cacapp/screen/info_screen_dart.dart';
-import 'package:cacapp/util/extensions.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:cacapp/util/extensions.dart';
+
+import 'package:cacapp/screen/info_screen_dart.dart';
 
 class InfoTopBar extends StatefulWidget {
   const InfoTopBar({Key? key}) : super(key: key);
@@ -17,17 +19,14 @@ class _InfoTopBarState extends State<InfoTopBar> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconButton(
-          icon: const Icon(Icons.keyboard_arrow_left),
+          icon: Image.asset('assets/images/button/back.png'),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         Text(AppLocalizations.of(context)!.information.capitalize()),
         IconButton(
-          icon: Image.asset(
-            'assets/images/button/feedback.png',
-            scale: 20,
-          ),
+          icon: Image.asset('assets/images/button/feedback.png'),
           onPressed: () => _showAbout(context),
         ),
       ],

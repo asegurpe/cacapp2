@@ -27,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         title: MainTopBar(
           totalReports: 10,
+          totalReportsViewed: 23,
         ),
       ),
       body: const Center(),

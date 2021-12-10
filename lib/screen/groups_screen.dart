@@ -25,7 +25,7 @@ class _GroupsScreenState extends State<GroupsScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              icon: const Icon(Icons.keyboard_arrow_left),
+              icon: Image.asset('assets/images/button/back.png'),
               onPressed: () {
                 Navigator.pop(context);
               },

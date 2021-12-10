@@ -8,5 +8,27 @@
     "delete": "delete",
     "about_text_1": "CacApp is an application created to report citizens' pet faeces that have been left on public roads.",
     "about_text_2": "CacApp is not intended as an official reporting method, but rather as a way to raise awareness among citizens, regardless of their nationality, religion or other personal aspects.",
-    "about_text_3": "If you have any questions or suggestions regarding the application only, please do not hesitate to contact us via our feedback form. For all other communications, please contact the competent authority."
+    "about_text_3": "If you have any questions or suggestions regarding the application only, please do not hesitate to contact us via our feedback form. For all other communications, please contact the competent authority.",
+    "profile": "Profile",
+    "number_of_poops": "{poops,plural, =0{No poop} =1{1 pop} other{{poops} poops}}",
+    "@number_of_poops": {
+        "description": "{poops} poops",
+        "placeholders": {
+            "poops": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "number_of_points": "{points,plural, =0{No points} =1{1 point} other{{points} points}}",
+    "@number_of_points": {
+        "description": "{points} points",
+        "placeholders": {
+            "points": {
+                "type": "int",
+                "example": "10"
+            }
+        }
+    },
+    "automatic": "Automatic"
 }

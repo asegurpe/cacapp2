@@ -13,8 +13,6 @@ class ReportsScreen extends StatefulWidget {
 }
 
 class _ReportsScreenState extends State<ReportsScreen> {
-  bool onlyNoConfirmed = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,17 +23,15 @@ class _ReportsScreenState extends State<ReportsScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             IconButton(
-              icon: const Icon(Icons.keyboard_arrow_left),
+              icon: Image.asset('assets/images/button/back.png'),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
             Text(AppLocalizations.of(context)!.reports.capitalize()),
             IconButton(
-              icon: onlyNoConfirmed
-                  ? const Icon(Icons.visibility_off, color: Colors.grey)
-                  : const Icon(Icons.visibility, color: Colors.green),
-              onPressed: _changeView,
+              icon: Image.asset('assets/images/button/filter.png'),
+              onPressed: () {},
             ),
           ],
         ),
@@ -47,11 +43,6 @@ class _ReportsScreenState extends State<ReportsScreen> {
         ),
       ),
     );
-  }
-
-  void _changeView() {
-    onlyNoConfirmed = !onlyNoConfirmed;
-    setState(() {});
   }
 
   List<Widget> _getReports(BuildContext context) {
