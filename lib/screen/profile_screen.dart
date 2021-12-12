@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SafeArea(
         child: Center(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               const SizedBox(),
               Column(
@@ -79,7 +79,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     image: AssetImage('assets/images/user.png'),
                     width: 100,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Text('$username'),
                   const SizedBox(height: 40),
                   Row(

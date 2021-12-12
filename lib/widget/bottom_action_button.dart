@@ -32,7 +32,6 @@ class _BottomActionButtonState extends State<BottomActionButton> {
             children: [
               Image(
                 image: AssetImage('assets/images/button/${widget.icon}'),
-                height: 20.0,
               ),
               Transform.translate(
                 offset: Offset(15.0, -10.0),
