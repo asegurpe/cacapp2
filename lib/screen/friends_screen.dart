@@ -140,18 +140,18 @@ class _FriendsScreenState extends State<FriendsScreen> {
   }
 
   Widget _getLeading(User user) {
-    String image = 'assets/images/button/friend.png';
-    switch (user.friendship) {
-      case Friendship.waiting:
-        image = 'assets/images/button/hi.png';
-        break;
-      case Friendship.pending:
-        image = 'assets/images/button/apply.png';
-        break;
-      case Friendship.friend:
-        image = image;
-        break;
-    }
+    String image = 'assets/images/button/friends.png';
+    // switch (user.friendship) {
+    //   case Friendship.waiting:
+    //     image = 'assets/images/button/hi.png';
+    //     break;
+    //   case Friendship.pending:
+    //     image = 'assets/images/button/apply.png';
+    //     break;
+    //   case Friendship.friend:
+    //     image = image;
+    //     break;
+    // }
     return Image(height: 30, image: AssetImage(image));
   }
 

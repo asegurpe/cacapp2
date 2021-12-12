@@ -31,9 +31,9 @@ class _GroupsScreenState extends State<GroupsScreen> {
               },
             ),
             Text(AppLocalizations.of(context)!.groups.capitalize()),
-            const IconButton(
-              icon: Icon(Icons.visibility, color: Colors.white),
-              onPressed: null,
+            IconButton(
+              icon: Image.asset('assets/images/button/loupe.png'),
+              onPressed: () {},
             ),
           ],
         ),
@@ -43,6 +43,11 @@ class _GroupsScreenState extends State<GroupsScreen> {
           children: _getReports(context),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -140,18 +145,18 @@ class _GroupsScreenState extends State<GroupsScreen> {
   }
 
   Widget _getLeading(Group group) {
-    String image = 'assets/images/button/friend.png';
-    switch (group.relationship) {
-      case Relationship.waiting:
-        image = 'assets/images/button/hi.png';
-        break;
-      case Relationship.guest:
-        image = 'assets/images/button/apply.png';
-        break;
-      case Relationship.belong:
-        image = image;
-        break;
-    }
+    String image = 'assets/images/button/group.png';
+    // switch (group.relationship) {
+    //   case Relationship.waiting:
+    //     image = 'assets/images/button/hi.png';
+    //     break;
+    //   case Relationship.guest:
+    //     image = 'assets/images/button/apply.png';
+    //     break;
+    //   case Relationship.belong:
+    //     image = image;
+    //     break;
+    // }
     return Image(height: 30, image: AssetImage(image));
   }
 
