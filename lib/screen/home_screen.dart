@@ -1,3 +1,4 @@
+import 'package:cacapp/screen/ranking_screen.dart';
 import 'package:cacapp/widget/bottom_action_button.dart';
 import 'package:cacapp/widget/main_top_bar.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 icon: 'cup.png',
                 label: AppLocalizations.of(context)!.ranking.capitalize(),
                 color: Colors.yellow,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, RankingScreen.route);
+                },
                 showNotification: false,
               ),
               BottomActionButton(

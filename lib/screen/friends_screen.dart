@@ -52,31 +52,43 @@ class _FriendsScreenState extends State<FriendsScreen> {
         id: '1',
         name: 'User 1',
         friendship: Friendship.friend,
+        points: 10,
+        gender: 0,
       ),
       User(
         id: '2',
         name: 'User 2',
         friendship: Friendship.waiting,
+        points: 10,
+        gender: 1,
       ),
       User(
         id: '3',
         name: 'User 3',
         friendship: Friendship.pending,
+        points: 10,
+        gender: 2,
       ),
       User(
         id: '4',
         name: 'User 4',
         friendship: Friendship.friend,
+        points: 10,
+        gender: 1,
       ),
       User(
         id: '5',
         name: 'User 5',
         friendship: Friendship.waiting,
+        points: 10,
+        gender: 1,
       ),
       User(
         id: '6',
         name: 'User 6',
         friendship: Friendship.pending,
+        points: 10,
+        gender: 0,
       ),
     ];
 

@@ -57,31 +57,37 @@ class _GroupsScreenState extends State<GroupsScreen> {
         id: '1',
         name: 'Group 1',
         relationship: Relationship.belong,
+        points: 10,
       ),
       Group(
         id: '2',
         name: 'Group 2',
         relationship: Relationship.waiting,
+        points: 10,
       ),
       Group(
         id: '3',
         name: 'Group 3',
         relationship: Relationship.guest,
+        points: 10,
       ),
       Group(
         id: '4',
         name: 'Group 4',
         relationship: Relationship.waiting,
+        points: 10,
       ),
       Group(
         id: '5',
         name: 'Group 5',
         relationship: Relationship.belong,
+        points: 10,
       ),
       Group(
         id: '6',
         name: 'Group 6',
         relationship: Relationship.guest,
+        points: 10,
       ),
     ];
 

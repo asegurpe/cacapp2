@@ -1,4 +1,5 @@
 import 'package:cacapp/screen/profile_screen.dart';
+import 'package:cacapp/screen/ranking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:cacapp/screen/friends_screen.dart';
 import 'package:cacapp/screen/groups_screen.dart';
@@ -14,5 +15,6 @@ Map<String, WidgetBuilder> getApplicationRoutes() {
     GroupsScreen.route: (context) => const GroupsScreen(),
     InfoScreen.route: (context) => const InfoScreen(),
     ProfileScreen.route: (context) => const ProfileScreen(),
+    RankingScreen.route: (context) => const RankingScreen(),
   };
 }

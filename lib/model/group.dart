@@ -7,11 +7,13 @@ class Group {
     required this.id,
     required this.name,
     required this.relationship,
+    required this.points,
   });
 
   String id;
   String name;
   Relationship relationship;
+  int points;
 
   factory Group.fromJson(String str) => Group.fromMap(json.decode(str));
 
@@ -22,6 +24,7 @@ class Group {
       id: json['id'],
       name: json['name'],
       relationship: json['relationship'],
+      points: json['points'],
     );
   }
 
@@ -29,6 +32,7 @@ class Group {
         'id': id,
         'name': name,
         'relationship': relationship,
+        'points': points,
       };
 }
 

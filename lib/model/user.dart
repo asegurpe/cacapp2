@@ -7,11 +7,15 @@ class User {
     required this.id,
     required this.name,
     required this.friendship,
+    required this.points,
+    required this.gender,
   });
 
   String id;
   String name;
   Friendship friendship;
+  int points;
+  int gender;
 
   factory User.fromJson(String str) => User.fromMap(json.decode(str));
 
@@ -22,6 +26,8 @@ class User {
       id: json['id'],
       name: json['name'],
       friendship: json['friendship'],
+      points: json['points'],
+      gender: json['gender'],
     );
   }
 
@@ -29,6 +35,8 @@ class User {
         'id': id,
         'name': name,
         'friendship': friendship,
+        'poinbrts': points,
+        'gender': gender,
       };
 }
 
