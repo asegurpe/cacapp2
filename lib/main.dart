@@ -1,4 +1,5 @@
 import 'package:cacapp/theme/theme.dart';
+import 'package:cacapp/util/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -6,7 +7,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cacapp/routes/routes.dart';
 import 'package:cacapp/screen/home_screen.dart';
 
-void main() => runApp(const CacApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Preferences preferences = Preferences();
+  await preferences.init();
+  runApp(const CacApp());
+}
 
 class CacApp extends StatefulWidget {
   const CacApp({Key? key}) : super(key: key);
@@ -14,18 +20,26 @@ class CacApp extends StatefulWidget {
   @override
   State<CacApp> createState() => _CacAppState();
 
-  static void setLocale(BuildContext context, Locale newLocale) async {
+  static void setLocale(BuildContext context, Locale? newLocale) async {
     _CacAppState? state = context.findAncestorStateOfType<_CacAppState>();
     state!.changeLanguage(newLocale);
   }
 }
 
 class _CacAppState extends State<CacApp> {
-  Locale _locale = Locale('ca');
-  changeLanguage(Locale locale) {
+  late Locale? _locale;
+
+  changeLanguage(Locale? locale) {
     setState(() {
       _locale = locale;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    String languageCode = Preferences().languageCode;
+    _locale = languageCode.isEmpty ? null : Locale(languageCode);
   }
 
   @override

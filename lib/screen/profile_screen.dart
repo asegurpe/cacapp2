@@ -1,4 +1,5 @@
 import 'package:cacapp/util/enumerations.dart';
+import 'package:cacapp/util/preferences.dart';
 import 'package:cacapp/widget/i18n_dropdown.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  Preferences prefs = Preferences();
+
   late String username;
   late int poops;
   late int points;
@@ -26,11 +29,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   void initState() {
+    super.initState();
     username = 'asegurpe';
     poops = 0;
     points = 0;
 
-    var dummy = DropdownElement(id: 0, text: 'Dummy', values: {});
+    initLanguages();
+  }
+
+  void initLanguages() {
+    DropdownElement dummy = DropdownElement(id: 0, text: 'Dummy', values: {});
 
     _language = dummy;
     _languages = [
@@ -39,7 +47,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Center(child: Text(dummy.text)),
       )
     ];
-    super.initState();
   }
 
   @override
@@ -132,15 +139,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           item: _language,
                           onChanged: (DropdownElement? newVal) async {
                             _language = newVal;
-                            if (_language!.values.isEmpty) {
-                              CacApp.setLocale(
-                                  context,
-                                  WidgetsBinding
-                                      .instance!.window.locales.first);
-                              return;
-                            }
                             String? code = _language!.values['code'];
-                            CacApp.setLocale(context, Locale(code!));
+                            if (code == null) {
+                              CacApp.setLocale(context, null);
+                            } else {
+                              CacApp.setLocale(context, Locale(code));
+                            }
+                            prefs.languageCode = code;
+                            _initData(context);
                             setState(() {});
                           },
                         ),
@@ -234,16 +240,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   void _initData(BuildContext context) {
+    DropdownElement? l;
     List<DropdownElement> language = Enumerations(context: context).language;
-    if (_languages!.length <= 1) {
-      _languages!.addAll(language.map((value) {
-        return DropdownMenuItem<DropdownElement>(
-          value: value,
-          child: Center(child: Text(value.text)),
-        );
-      }).toList());
-      _languages!.removeAt(0);
-      _language = _languages!.first.value;
-    }
+    initLanguages();
+    _languages!.addAll(language.map((value) {
+      if (prefs.languageCode == value.values['code']) {
+        l = value;
+      }
+      return DropdownMenuItem<DropdownElement>(
+        value: value,
+        child: Center(child: Text(value.text)),
+      );
+    }).toList());
+    _languages!.removeAt(0);
+    _language = l ?? _languages!.first.value;
+    setState(() {});
   }
 }
