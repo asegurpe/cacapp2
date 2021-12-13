@@ -124,11 +124,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const SizedBox(
-                        height: 40,
-                        child: Image(
-                          image:
-                              AssetImage('assets/images/button/language.png'),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 8),
+                        child: SizedBox(
+                          height: 40,
+                          child: Image(
+                            image:
+                                AssetImage('assets/images/button/language.png'),
+                          ),
                         ),
                       ),
                       const SizedBox(width: 40),
