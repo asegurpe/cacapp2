@@ -1,7 +1,8 @@
-import 'package:cacapp/screen/ranking_screen.dart';
-import 'package:cacapp/widget/bottom_action_button.dart';
-import 'package:cacapp/widget/main_top_bar.dart';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cacapp/util/extensions.dart';
@@ -9,6 +10,9 @@ import 'package:cacapp/util/extensions.dart';
 import 'package:cacapp/screen/friends_screen.dart';
 import 'package:cacapp/screen/groups_screen.dart';
 import 'package:cacapp/screen/info_screen_dart.dart';
+import 'package:cacapp/screen/ranking_screen.dart';
+import 'package:cacapp/widget/bottom_action_button.dart';
+import 'package:cacapp/widget/main_top_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -20,18 +24,31 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  Completer<GoogleMapController> _controller = Completer();
+
   @override
   Widget build(BuildContext context) {
+    final CameraPosition puntoInicial = CameraPosition(
+      target: LatLng(37.42796133580664, -122.085749655962),
+      zoom: 14.4746,
+    );
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: MainTopBar(
+        title: const MainTopBar(
           totalReports: 10,
           totalReportsViewed: 23,
         ),
       ),
-      body: const Center(),
+      body: GoogleMap(
+        mapType: MapType.hybrid,
+        initialCameraPosition: puntoInicial,
+        onMapCreated: (GoogleMapController controller) {
+          _controller.complete(controller);
+        },
+      ),
       bottomNavigationBar: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
