@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:cacapp/util/geo.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -24,15 +26,25 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Completer<GoogleMapController> _controller = Completer();
+  late GoogleMapController _controller;
+
+  double _zoom = 17;
+  CameraPosition _currentPosition =
+      CameraPosition(target: LatLng(41.670012, 1.858614), zoom: 17);
+
+  @override
+  void initState() {
+    super.initState();
+    // getPosition().then((po) {
+    //   var latLng = LatLng(po.latitude, po.longitude);
+    //   _currentPosition = CameraPosition(target: latLng);
+    //   _controller.animateCamera(CameraUpdate.newLatLngZoom(latLng, _zoom));
+    //   setState(() {});
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final CameraPosition puntoInicial = CameraPosition(
-      target: LatLng(37.42796133580664, -122.085749655962),
-      zoom: 14.4746,
-    );
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -43,11 +55,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: GoogleMap(
-        mapType: MapType.hybrid,
-        initialCameraPosition: puntoInicial,
+        mapType: MapType.normal,
+        initialCameraPosition: _currentPosition,
         onMapCreated: (GoogleMapController controller) {
-          _controller.complete(controller);
+          _controller = controller;
         },
+        mapToolbarEnabled: true,
+        zoomControlsEnabled: true,
+        myLocationEnabled: true,
       ),
       bottomNavigationBar: SafeArea(
         child: Padding(
@@ -96,10 +111,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Image(image: AssetImage('assets/images/button/place.png')),
+        ),
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  Future<LatLng> getPosition() async {
+    Position p = await GeoUtils.determinePosition();
+    return LatLng(p.latitude, p.longitude);
   }
 }
