@@ -1,11 +1,11 @@
-import 'package:cacapp/theme/theme.dart';
-import 'package:cacapp/util/preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:cacapp/routes/routes.dart';
 import 'package:cacapp/screen/home_screen.dart';
+import 'package:cacapp/theme/theme.dart';
+import 'package:cacapp/util/preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
