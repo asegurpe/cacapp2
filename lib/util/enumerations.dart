@@ -23,7 +23,7 @@ class Enumerations {
       ),
       DropdownElement(
         id: 3,
-        text: 'Español',
+        text: 'Castellano',
         values: {'code': 'es'},
       ),
       DropdownElement(
