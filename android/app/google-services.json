@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1000198271835",
+    "project_id": "cacapp-accf9",
+    "storage_bucket": "cacapp-accf9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000198271835:android:45b2dac8b64a7efa15e07e",
+        "android_client_info": {
+          "package_name": "com.asegurpe.cacapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1000198271835-5ck0og1u7ug8l1afq5gf9jtgdhij5lt8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB98p7DQaR1gYUCZdAtkSTVnYZ5TWyGFa8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1000198271835-5ck0og1u7ug8l1afq5gf9jtgdhij5lt8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1000198271835-evagrprog79ksi626a2n14ibb4c22khk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.asegurpe.cacapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

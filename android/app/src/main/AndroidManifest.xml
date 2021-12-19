@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cacapp">
+    package="com.asegurpe.cacapp">
    <application
         android:label="cacapp"
         android:icon="@mipmap/ic_launcher">
