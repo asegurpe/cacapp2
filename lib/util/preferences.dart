@@ -13,9 +13,6 @@ class Preferences {
 
   init() async {
     _prefs = await SharedPreferences.getInstance();
-    // for (String key in _prefs.getKeys()) {
-    //   _prefs.remove(key);
-    // }
   }
 
   String get languageCode {
@@ -27,6 +24,18 @@ class Preferences {
       _prefs.remove('languageCode');
     } else {
       _prefs.setString('languageCode', value);
+    }
+  }
+
+  String get userId {
+    return _prefs.getString('userId') ?? '';
+  }
+
+  set userId(String? value) {
+    if (value == null) {
+      _prefs.remove('userId');
+    } else {
+      _prefs.setString('userId', value);
     }
   }
 }

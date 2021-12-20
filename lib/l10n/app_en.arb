@@ -30,5 +30,6 @@
             }
         }
     },
-    "automatic": "Automatic"
+    "automatic": "Automatic",
+    "no_reports": "No reports"
 }

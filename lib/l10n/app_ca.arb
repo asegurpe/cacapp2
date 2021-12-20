@@ -12,5 +12,6 @@
     "profile": "Perfil",
     "number_of_poops": "{poops,plural, =0{Cap caca} =1{1 caca} other{{poops} caques}}",
     "number_of_points": "{points,plural, =0{Cap punt} =1{1 punt} other{{points} punts}}",
-    "automatic": "Automàtic"
+    "automatic": "Automàtic",
+    "no_reports": "No hi ha denúncies"
 }

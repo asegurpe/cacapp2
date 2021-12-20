@@ -1,8 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cacapp/provider/report_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:cacapp/routes/routes.dart';
 import 'package:cacapp/screen/home_screen.dart';
@@ -13,18 +15,26 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Preferences preferences = Preferences();
   await preferences.init();
+  preferences.userId = 'lbABclXAgNJib9NVIPQJ';
   await Firebase.initializeApp();
+  runApp(const AppState());
+}
 
-  Query query =
-      FirebaseFirestore.instance.collection('reports').where('informer');
-  QuerySnapshot querySnapshot = await query.get();
-  List reports = querySnapshot.docs.map((DocumentSnapshot doc) {
-    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    data['id'] = doc.id;
-    return data;
-  }).toList();
+class AppState extends StatelessWidget {
+  const AppState({Key? key}) : super(key: key);
 
-  runApp(const CacApp());
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => ReportProvider(),
+          lazy: false,
+        ),
+      ],
+      child: const CacApp(),
+    );
+  }
 }
 
 class CacApp extends StatefulWidget {

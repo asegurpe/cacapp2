@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-// import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Report {
   Report({
@@ -10,7 +10,7 @@ class Report {
     required this.consistency,
     required this.description,
     required this.informer,
-    // required this.location,
+    required this.location,
     required this.picture,
     required this.size,
     required this.smell,
@@ -22,7 +22,7 @@ class Report {
   int consistency;
   String description;
   String informer;
-  // GeoPoint location;
+  GeoPoint location;
   String picture;
   int size;
   int smell;
@@ -39,7 +39,7 @@ class Report {
       consistency: json['consistency'],
       description: json['description'],
       informer: json['informer'],
-      // location: json['location'],
+      location: json['location'],
       picture: json['picture'],
       size: json['size'],
       smell: json['smell'],
@@ -52,7 +52,7 @@ class Report {
         'consistency': consistency,
         'description': description,
         'informer': informer,
-        // 'location': location,
+        'location': location,
         'picture': picture,
         'size': size,
         'smell': smell,

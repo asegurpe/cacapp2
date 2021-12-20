@@ -12,5 +12,6 @@
     "profile": "Perfil",
     "number_of_poops": "{poops,plural, =0{Ninguna caca} =1{1 caca} other{{poops} cacas}}",
     "number_of_points": "{points,plural, =0{Ningún punto} =1{1 punto} other{{points} puntos}}",
-    "automatic": "Automático"
+    "automatic": "Automático",
+    "no_reports": "No hay denúncias"
 }
