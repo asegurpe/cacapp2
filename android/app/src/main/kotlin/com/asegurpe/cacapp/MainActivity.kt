@@ -1,4 +1,4 @@
-package com.example.cacapp
+package com.asegurpe.cacapp
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,10 +1,15 @@
-import 'package:cacapp/util/enumerations.dart';
-import 'package:cacapp/util/preferences.dart';
-import 'package:cacapp/widget/i18n_dropdown.dart';
+import 'package:cacapp/util/geo.dart';
 import 'package:flutter/material.dart';
+import 'package:geocode/geocode.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cacapp/util/extensions.dart';
+
+import 'package:cacapp/util/enumerations.dart';
+import 'package:cacapp/util/preferences.dart';
+import 'package:cacapp/widget/i18n_dropdown.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../main.dart';
 
@@ -21,16 +26,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Preferences prefs = Preferences();
 
   late String username;
+  late String municipality;
   late int poops;
   late int points;
 
   List<DropdownMenuItem<DropdownElement>>? _languages;
   DropdownElement? _language;
 
+  TextEditingController municipalityController = TextEditingController();
+
   @override
   void initState() {
     super.initState();
     username = 'asegurpe';
+    municipality = 'Sant Vicenc de Castellet';
     poops = 0;
     points = 0;
 
@@ -52,6 +61,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     _initData(context);
+
+    municipalityController.addListener(() {
+      // Haz algo aqui
+    });
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -68,110 +82,136 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Text(AppLocalizations.of(context)!.profile.capitalize()),
             IconButton(
               icon: Image.asset('assets/images/button/logout.png'),
-              onPressed: () => _showLogout(context),
+              onPressed: () => _showLogoutDialog(context),
             ),
           ],
         ),
       ),
       body: SafeArea(
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              const SizedBox(),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Image(
-                    image: AssetImage('assets/images/user.png'),
-                    width: 100,
-                  ),
-                  const SizedBox(height: 20),
-                  Text('$username'),
-                  const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const SizedBox(
-                        height: 40,
-                        child: Image(
-                          image: AssetImage('assets/images/marker.png'),
-                        ),
-                      ),
-                      const SizedBox(width: 40),
-                      Text(
-                        AppLocalizations.of(context)!.number_of_poops(poops),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const SizedBox(
-                        height: 40,
-                        child: Image(
-                          image: AssetImage('assets/images/button/cup.png'),
-                        ),
-                      ),
-                      const SizedBox(width: 40),
-                      Text(
-                        AppLocalizations.of(context)!.number_of_points(points),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(left: 8),
-                        child: SizedBox(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                const SizedBox(),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Image(
+                      image: AssetImage('assets/images/user.png'),
+                      width: 100,
+                    ),
+                    const SizedBox(height: 20),
+                    Text('$username'),
+                    Text('($municipality)'),
+                    const SizedBox(height: 40),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const SizedBox(
                           height: 40,
                           child: Image(
-                            image:
-                                AssetImage('assets/images/button/language.png'),
+                            image: AssetImage('assets/images/town.png'),
                           ),
                         ),
-                      ),
-                      const SizedBox(width: 40),
-                      SizedBox(
-                        width: 130,
-                        child: I18nDropdown(
-                          items: _languages,
-                          item: _language,
-                          onChanged: (DropdownElement? newVal) async {
-                            _language = newVal;
-                            String? code = _language!.values['code'];
-                            if (code == null) {
-                              CacApp.setLocale(context, null);
-                            } else {
-                              CacApp.setLocale(context, Locale(code));
-                            }
-                            prefs.languageCode = code;
-                            _initData(context);
-                            setState(() {});
-                          },
+                        const SizedBox(width: 40),
+                        SizedBox(
+                          width: 100,
+                          child: ElevatedButton(
+                            onPressed: () => _showMunicipalityDialog(context),
+                            child: Text('Select'),
+                            style: ElevatedButton.styleFrom(
+                                onPrimary: Colors.white),
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              ElevatedButton(
-                onPressed: () => _showDelete(context),
-                child: Text('Delete account'),
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.red, onPrimary: Colors.white),
-              )
-            ],
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const SizedBox(
+                          height: 40,
+                          child: Image(
+                            image: AssetImage('assets/images/marker.png'),
+                          ),
+                        ),
+                        const SizedBox(width: 40),
+                        Text(
+                          AppLocalizations.of(context)!.number_of_poops(poops),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const SizedBox(
+                          height: 40,
+                          child: Image(
+                            image: AssetImage('assets/images/button/cup.png'),
+                          ),
+                        ),
+                        const SizedBox(width: 40),
+                        Text(
+                          AppLocalizations.of(context)!
+                              .number_of_points(points),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 20),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8),
+                          child: SizedBox(
+                            height: 40,
+                            child: Image(
+                              image: AssetImage(
+                                  'assets/images/button/language.png'),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 40),
+                        SizedBox(
+                          width: 130,
+                          child: I18nDropdown(
+                            items: _languages,
+                            item: _language,
+                            onChanged: (DropdownElement? newVal) async {
+                              _language = newVal;
+                              String? code = _language!.values['code'];
+                              if (code == null) {
+                                CacApp.setLocale(context, null);
+                              } else {
+                                CacApp.setLocale(context, Locale(code));
+                              }
+                              prefs.languageCode = code;
+                              _initData(context);
+                              setState(() {});
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                ElevatedButton(
+                  onPressed: () => _showDeleteDialog(context),
+                  child: Text('Delete account'),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.red, onPrimary: Colors.white),
+                )
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  void _showLogout(BuildContext context) {
+  void _showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -199,7 +239,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
-  void _showDelete(BuildContext context) {
+  void _showDeleteDialog(BuildContext context) {
     showDialog(
       context: context,
       barrierDismissible: false,
@@ -242,6 +282,66 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  void _showMunicipalityDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          title: Center(
+              child: Text(
+            'Select municipality',
+          )),
+          content: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            height: 150,
+            child: Center(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextField(
+                  controller: municipalityController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Municipality name',
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () async {
+                    getPosition().then((po) async {
+                      GeoCode geoCode = GeoCode();
+                      Address address = await geoCode.reverseGeocoding(
+                          latitude: po.latitude, longitude: po.longitude);
+                      municipalityController.text = address.city ?? '';
+                      setState(() {});
+                    });
+                  },
+                  child: Text(
+                      AppLocalizations.of(context)!.automatic.capitalize()),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.green, onPrimary: Colors.white),
+                )
+              ],
+            )),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {},
+              child: Text(
+                'Save',
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   void _initData(BuildContext context) {
     DropdownElement? l;
     List<DropdownElement> language = Enumerations(context: context).language;
@@ -257,6 +357,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }).toList());
     _languages!.removeAt(0);
     _language = l ?? _languages!.first.value;
+
+    _getLocation();
+
     setState(() {});
+  }
+
+  void _getLocation() async {
+    GeoCode geoCode = GeoCode();
+
+    try {
+      // Address address = await geoCode.reverseGeocoding(
+      //     latitude: 41.670012, longitude: 1.858614);
+      // print('Address ${address.city}');
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<LatLng> getPosition() async {
+    Position p = await GeoUtils.determinePosition();
+    return LatLng(p.latitude, p.longitude);
   }
 }
