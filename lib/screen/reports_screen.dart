@@ -48,11 +48,14 @@ class _ReportsScreenState extends State<ReportsScreen> {
             builder:
                 (BuildContext context, AsyncSnapshot<List<Report>> snapshot) {
               if (!snapshot.hasData) {
-                return const Center(child: Text('No reports'));
+                return const Center(child: CircularProgressIndicator());
               }
-              List<Report>? reports = snapshot.data;
+              final List<Report> reports = snapshot.data ?? [];
+              if (reports.isEmpty) {
+                return const Center(child: Text('No records'));
+              }
               return ListView.builder(
-                  itemCount: reports!.length,
+                  itemCount: reports.length,
                   itemBuilder: (BuildContext context, int index) {
                     Report report = reports[index];
 
