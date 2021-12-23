@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: Text('Login'),
+        title: Center(child: Text('Login')),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             const Text(
               'CacApp',
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+              style: TextStyle(fontSize: 40),
             ),
             TextField(
               controller: _emailController,
@@ -55,9 +55,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.all(4),
                     child: Image(
                         height: 25,
-                        image: AssetImage('assets/images/button/email.png')),
+                        image: AssetImage('assets/images/button/lock.png')),
                   ),
-                  Expanded(child: Center(child: Text('Sign up email'))),
+                  Expanded(child: Center(child: Text('Login'))),
                 ],
               ),
               style: ElevatedButton.styleFrom(
@@ -67,9 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             TextButton(onPressed: () {}, child: Text('I forgot password')),
-            const Divider(
-              thickness: 5,
-            ),
+            const SizedBox(height: 4),
             ElevatedButton(
               onPressed: () {
                 Navigator.pushNamed(context, HomeScreen.route);
@@ -125,13 +123,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     padding: EdgeInsets.all(4),
                     child: Image(
                         height: 25,
-                        image:
-                            AssetImage('assets/images/button/telephone.png')),
+                        image: AssetImage('assets/images/button/email.png')),
                   ),
-                  Expanded(child: Center(child: Text('Sign in with phone'))),
+                  Expanded(child: Center(child: Text('Sign up with email'))),
                 ],
               ),
               style: ElevatedButton.styleFrom(
+                primary: Colors.teal,
                 onPrimary: Colors.white,
                 minimumSize: const Size(100, 50),
               ),
