@@ -234,7 +234,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Text('Cancel'),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.popUntil(context, ModalRoute.withName('login'));
+              },
               child: Text(AppLocalizations.of(context)!.confirm.capitalize()),
             ),
           ],

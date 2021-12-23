@@ -1,4 +1,5 @@
 import 'package:cacapp/provider/report_provider.dart';
+import 'package:cacapp/screen/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -71,7 +72,7 @@ class _CacAppState extends State<CacApp> {
       debugShowCheckedModeBanner: false,
       title: 'CacApp',
       //home: HomeScreen(),
-      initialRoute: HomeScreen.route,
+      initialRoute: LoginScreen.route,
       routes: getApplicationRoutes(),
       onGenerateRoute: (settings) {
         return MaterialPageRoute(builder: (context) => const HomeScreen());

@@ -1,3 +1,4 @@
+import 'package:cacapp/screen/login_screen.dart';
 import 'package:cacapp/screen/profile_screen.dart';
 import 'package:cacapp/screen/ranking_screen.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:cacapp/screen/reports_screen.dart';
 
 Map<String, WidgetBuilder> getApplicationRoutes() {
   return {
+    LoginScreen.route: (context) => const LoginScreen(),
     HomeScreen.route: (context) => const HomeScreen(),
     ReportsScreen.route: (context) => const ReportsScreen(),
     FriendsScreen.route: (context) => const FriendsScreen(),

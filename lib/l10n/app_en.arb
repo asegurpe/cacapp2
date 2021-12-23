@@ -31,5 +31,6 @@
         }
     },
     "automatic": "Automatic",
-    "no_reports": "No reports"
+    "no_reports": "No reports",
+    "login": "Login"
 }
