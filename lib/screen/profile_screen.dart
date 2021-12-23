@@ -25,10 +25,10 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   Preferences prefs = Preferences();
 
-  late String username;
-  late String municipality;
-  late int poops;
-  late int points;
+  late String _username;
+  late String _municipality;
+  late int _poops;
+  late int _points;
 
   List<DropdownMenuItem<DropdownElement>>? _languages;
   DropdownElement? _language;
@@ -38,10 +38,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    username = 'asegurpe';
-    municipality = 'Sant Vicenc de Castellet';
-    poops = 0;
-    points = 0;
+    _username = 'asegurpe';
+    _municipality = 'Sant Vicenc de Castellet';
+    _poops = 0;
+    _points = 0;
 
     initLanguages();
   }
@@ -61,6 +61,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     _initData(context);
+
+    final double? _height = MediaQuery.of(context).size.height / 25;
 
     municipalityController.addListener(() {
       // Haz algo aqui
@@ -101,10 +103,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       image: AssetImage('assets/images/user.png'),
                       width: 100,
                     ),
-                    const SizedBox(height: 20),
-                    Text('$username'),
-                    Text('($municipality)'),
-                    const SizedBox(height: 40),
+                    SizedBox(height: _height),
+                    Text('$_username'),
+                    const SizedBox(height: 10),
+                    Text('($_municipality)'),
+                    SizedBox(height: _height),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -126,7 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: _height),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -138,11 +141,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         const SizedBox(width: 40),
                         Text(
-                          AppLocalizations.of(context)!.number_of_poops(poops),
+                          AppLocalizations.of(context)!.number_of_poops(_poops),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: _height),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -155,11 +158,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         const SizedBox(width: 40),
                         Text(
                           AppLocalizations.of(context)!
-                              .number_of_points(points),
+                              .number_of_points(_points),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: _height),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -197,6 +200,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ],
                 ),
+                SizedBox(height: _height),
                 ElevatedButton(
                   onPressed: () => _showDeleteDialog(context),
                   child: Text('Delete account'),
@@ -331,7 +335,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Text('Cancel'),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                _municipality = municipalityController.text;
+                setState(() {});
+                Navigator.of(context).pop();
+              },
               child: Text(
                 'Save',
               ),
