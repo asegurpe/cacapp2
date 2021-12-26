@@ -1,7 +1,9 @@
-import 'package:cacapp/model/models.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cacapp/util/extensions.dart';
+
+import 'package:cacapp/model/models.dart';
 
 class GroupsScreen extends StatefulWidget {
   const GroupsScreen({Key? key}) : super(key: key);

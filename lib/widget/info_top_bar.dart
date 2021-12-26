@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cacapp/util/extensions.dart';
 
-import 'package:cacapp/screen/info_screen_dart.dart';
+import 'package:cacapp/screen/info_screen.dart';
 
 class InfoTopBar extends StatefulWidget {
   const InfoTopBar({Key? key}) : super(key: key);

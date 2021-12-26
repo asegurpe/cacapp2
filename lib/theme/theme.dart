@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 final theme = ThemeData(
   // Define the default brightness and colors.
   colorScheme: const ColorScheme(
-    primary: Colors.blue, // focus
+    primary: Colors.black, // focus
     onPrimary: Colors.black,
     primaryVariant: Colors.orange,
 
@@ -18,7 +18,7 @@ final theme = ThemeData(
     onError: Colors.grey,
 
     surface: Colors.lime, // AppBar
-    onSurface: Colors.blue, //icons, inputs
+    onSurface: Colors.black54, //icons, inputs
 
     brightness: Brightness.light,
   ),

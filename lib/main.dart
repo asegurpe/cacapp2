@@ -1,15 +1,15 @@
-import 'package:cacapp/provider/report_provider.dart';
-import 'package:cacapp/screen/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:cacapp/routes/routes.dart';
+import 'package:cacapp/screen/login_screen.dart';
 import 'package:cacapp/screen/home_screen.dart';
 import 'package:cacapp/theme/theme.dart';
+import 'package:cacapp/provider/report_provider.dart';
 import 'package:cacapp/util/preferences.dart';
 
 void main() async {

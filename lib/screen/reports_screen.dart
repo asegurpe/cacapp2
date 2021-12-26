@@ -1,9 +1,11 @@
-import 'package:cacapp/provider/report_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cacapp/util/extensions.dart';
+
+import 'package:cacapp/provider/report_provider.dart';
 import 'package:cacapp/model/report.dart';
-import 'package:provider/provider.dart';
 
 class ReportsScreen extends StatefulWidget {
   const ReportsScreen({Key? key}) : super(key: key);

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cacapp/util/extensions.dart';
+
 import 'package:cacapp/widget/info_top_bar.dart';
 
 class InfoScreen extends StatelessWidget {

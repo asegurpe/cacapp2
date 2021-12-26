@@ -1,18 +1,14 @@
-import 'dart:async';
-
-import 'package:cacapp/util/geo.dart';
 import 'package:flutter/material.dart';
+import 'package:cacapp/util/geo.dart';
 import 'package:geolocator/geolocator.dart';
-
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import 'dart:async';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:cacapp/util/extensions.dart';
 
-import 'package:cacapp/screen/friends_screen.dart';
-import 'package:cacapp/screen/groups_screen.dart';
-import 'package:cacapp/screen/info_screen_dart.dart';
-import 'package:cacapp/screen/ranking_screen.dart';
+import 'package:cacapp/screen/screens.dart';
 import 'package:cacapp/widget/bottom_action_button.dart';
 import 'package:cacapp/widget/main_top_bar.dart';
 

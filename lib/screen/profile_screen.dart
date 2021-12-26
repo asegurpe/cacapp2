@@ -1,5 +1,6 @@
-import 'package:cacapp/util/geo.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:geocode/geocode.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -8,8 +9,8 @@ import 'package:cacapp/util/extensions.dart';
 import 'package:cacapp/util/enumerations.dart';
 import 'package:cacapp/util/preferences.dart';
 import 'package:cacapp/widget/i18n_dropdown.dart';
-import 'package:geolocator/geolocator.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:cacapp/util/geo.dart';
+import 'package:provider/provider.dart';
 
 import '../main.dart';
 
