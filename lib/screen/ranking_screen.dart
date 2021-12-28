@@ -16,12 +16,11 @@ class RankingScreen extends StatefulWidget {
 
 class _RankingScreenState extends State<RankingScreen> {
   bool onlyFriends = true;
-  bool ascending = true;
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
@@ -36,14 +35,9 @@ class _RankingScreenState extends State<RankingScreen> {
                 },
               ),
               Text(AppLocalizations.of(context)!.ranking.capitalize()),
-              IconButton(
-                icon: getSort(),
-                onPressed: () {
-                  setState(() {
-                    ascending = !ascending;
-                  });
-                },
-              ),
+              const IconButton(
+                  icon: Icon(Icons.ac_unit, color: Colors.white),
+                  onPressed: null),
             ],
           ),
           bottom: TabBar(
@@ -58,6 +52,12 @@ class _RankingScreenState extends State<RankingScreen> {
                   child: Image.asset('assets/images/button/group.png'),
                 ),
               ),
+              Tab(
+                icon: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Image.asset('assets/images/town.png'),
+                ),
+              ),
             ],
           ),
         ),
@@ -70,18 +70,14 @@ class _RankingScreenState extends State<RankingScreen> {
               ListView(
                 children: _getGroups(context),
               ),
+              ListView(
+                children: _getTowns(context),
+              ),
             ],
           ),
         ),
       ),
     );
-  }
-
-  Image getSort() {
-    if (ascending) {
-      return Image.asset('assets/images/button/up_arrow.png');
-    }
-    return Image.asset('assets/images/button/down_arrow.png');
   }
 
   List<Widget> _getUsers(BuildContext context) {
@@ -234,6 +230,75 @@ class _RankingScreenState extends State<RankingScreen> {
 
   Widget _getGroupLeading(Group group) {
     String image = 'assets/images/button/group.png';
+
+    return Image(height: 30, image: AssetImage(image));
+  }
+
+  List<Widget> _getTowns(BuildContext context) {
+    List<Group> towns = [
+      Group(
+        id: '1',
+        name: 'Town 1',
+        relationship: Relationship.belong,
+        points: 10,
+      ),
+      Group(
+        id: '2',
+        name: 'Town 2',
+        relationship: Relationship.waiting,
+        points: 10,
+      ),
+      Group(
+        id: '3',
+        name: 'Town 3',
+        relationship: Relationship.guest,
+        points: 10,
+      ),
+      Group(
+        id: '4',
+        name: 'Town 4',
+        relationship: Relationship.waiting,
+        points: 10,
+      ),
+      Group(
+        id: '5',
+        name: 'Town 5',
+        relationship: Relationship.belong,
+        points: 10,
+      ),
+      Group(
+        id: '6',
+        name: 'Town 6',
+        relationship: Relationship.guest,
+        points: 10,
+      ),
+    ];
+
+    return towns.map((group) {
+      // if (report.picture.isEmpty) {
+      return Card(
+        child: Column(
+          children: [
+            ListTile(
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text(group.name),
+                  Text('${group.points}'),
+                ],
+              ),
+              leading: _getTownLeading(group),
+              trailing: Icon(Icons.keyboard_arrow_right),
+              onTap: () {},
+            ),
+          ],
+        ),
+      );
+    }).toList();
+  }
+
+  Widget _getTownLeading(Group group) {
+    String image = 'assets/images/town.png';
 
     return Image(height: 30, image: AssetImage(image));
   }
