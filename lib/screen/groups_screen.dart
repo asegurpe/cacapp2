@@ -34,7 +34,11 @@ class _GroupsScreenState extends State<GroupsScreen> {
             ),
             Text(AppLocalizations.of(context)!.groups.capitalize()),
             IconButton(
-              icon: Image.asset('assets/images/button/loupe.png'),
+              icon: const Icon(
+                Icons.search,
+                color: Colors.black,
+                size: 30,
+              ),
               onPressed: () {},
             ),
           ],
@@ -46,7 +50,17 @@ class _GroupsScreenState extends State<GroupsScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: const BorderSide(color: Colors.black),
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Icon(
+            Icons.add,
+            color: Colors.black,
+          ),
+        ),
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

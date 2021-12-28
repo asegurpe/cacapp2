@@ -10,7 +10,7 @@ final theme = ThemeData(
     background: Colors.red,
     onBackground: Colors.green,
 
-    secondary: Colors.brown, //float action button
+    secondary: Colors.white, //float action button
     onSecondary: Colors.white,
     secondaryVariant: Colors.deepOrange,
 

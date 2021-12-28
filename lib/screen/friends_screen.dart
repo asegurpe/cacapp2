@@ -34,7 +34,11 @@ class _FriendsScreenState extends State<FriendsScreen> {
             ),
             Text(AppLocalizations.of(context)!.friends.capitalize()),
             IconButton(
-              icon: Image.asset('assets/images/button/loupe.png'),
+              icon: const Icon(
+                Icons.search,
+                color: Colors.black,
+                size: 30,
+              ),
               onPressed: () {},
             ),
           ],

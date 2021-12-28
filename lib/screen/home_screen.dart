@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       body: GoogleMap(
-        mapType: MapType.normal,
+        mapType: MapType.hybrid,
         initialCameraPosition: _currentPosition,
         onMapCreated: (GoogleMapController controller) {
           _controller = controller;
@@ -107,7 +107,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: const BorderSide(color: Colors.black),
+        ),
         child: const Padding(
           padding: EdgeInsets.all(8.0),
           child: Image(image: AssetImage('assets/images/button/place.png')),
